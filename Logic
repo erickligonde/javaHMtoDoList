@@ -1,0 +1,59 @@
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Map;
+
+public class Home {
+    public static void main(String[] args) {
+        int num = 0;
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+        Boolean isRunning = false;
+        String task = "";
+
+        System.out.println("Welcome to the To-Do List App!");
+        while (!isRunning) {
+            System.out.println("What would you like to do? (pun lol :) ) (Add, Delete, or View)");
+            String choice = scanner.nextLine().toLowerCase();
+
+            switch (choice) {
+                case "add":
+                    System.out.println("What task would you like to add?");
+                    task = scanner.nextLine();
+                    LinkedHashMap<String, String> entry = new LinkedHashMap<>();
+                    entry.put("Task", task);
+                    list.add(entry);
+                    System.out.println("Task Added Successfully!");
+                    break;
+
+                case "delete":
+                    System.out.println("Which task would you like to delete?");
+                    int taskToDelete = scanner.nextInt() - 1;
+                    list.remove(taskToDelete);
+                    System.out.println("Task Deleted successfully!");
+                    break;
+
+                case "view":
+                    if (list.isEmpty()) {
+                        System.out.println("The To-Do List is currently empty.");
+                    } else {
+                        for (int i = 0; i < list.size(); i++){
+                            int count = i + 1;
+                            HashMap<String, String> taskToView = list.get(i);
+                            for (Map.Entry <String, String> map : taskToView.entrySet()){
+                                System.out.println(map.getKey() + " " +  count + ": " + map.getValue());
+                            }
+                        }
+                        }
+                    }
+            System.out.println("Would you like to do something else? (y/n)");
+            String keepRunning = scanner.nextLine().toLowerCase();
+            if (keepRunning.equals("n")) {
+                System.out.println("Goodbye!");
+                isRunning = true;
+            }
+            }
+            }
+        }
+
